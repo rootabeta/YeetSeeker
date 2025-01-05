@@ -1,7 +1,10 @@
+mod archiveparse;
+mod sheetbuilder;
+
 use clap::Parser;
 use std::io;
 use std::io::Write;
-use yeetseeker::SheetBuilder;
+use sheetbuilder::SheetBuilder;
 
 #[derive(Parser)]
 struct Args { 
@@ -44,10 +47,10 @@ fn main() {
             builder.update_archive().expect("Could not update archive");
         }
 
-        match builder.build_sheet(&region) { 
-            Ok(sheet_path) => println!("Created sheet at {sheet_path}"),
-            Err(reason) => eprintln!("Failed to create sheet:\n{reason}")
-        }
+        // Compile sheet from archive and write to file
+        let _sheet = builder.build_sheet(&region).expect("Could not build sheet from archive");
+        // TODO: Export sheet to chosen title
+
     } else { 
         eprintln!("Invalid user-agent provided. Shame on you.");
     };

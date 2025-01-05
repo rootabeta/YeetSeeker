@@ -1,3 +1,4 @@
+use crate::archiveparse::Archive;
 use anyhow::Result;
 use dialoguer::Confirm;
 use std::path::Path;
@@ -71,7 +72,41 @@ impl SheetBuilder {
     }
 
     // Build the actual sheet from nations.xml.gz
-    pub fn build_sheet(&self, region: &String) -> Result<String> { 
-        todo!();
+    pub fn build_sheet(&self, region: &String) -> Result<Sheet> { 
+        // Parse sheet into SheetRows
+        // Compile SheetRows into Sheet
+        // Sheet includes additional metadata 
+        // Sheet can be exported to xlsx format
+
+        let archive = Archive::from(&"nations.xml.gz".to_string())?;
+        // Nation { name: "Durmengrad at Updates End", wa_status: "Non-member", endorsements_list: "", region: "Warzone Trinidad", influence: 14.0, last_login: 1734904321 }] }
+        // TODO: Build API agent (and by build I mean steal it from Influencea) to fetch residency
+        // TODO: Boil down sheet data to only nations in the target region
+        // TODO: Compile residency struct and sheet data into Sheet Rows
+        // TODO: Build Sheet implementation to export SheetRows to xlsx
     }
+}
+
+pub struct SheetRow { 
+    nation: String,
+    influence: f64,
+    endorsement_count: u64,
+    wa_member: bool,
+    residency: f64,
+    last_login: u64
+}
+
+pub struct Sheet {
+    region: String,
+    total_influence: f64,
+    sheet_rows: Vec<SheetRow>
+}
+
+impl Sheet { 
+    /*
+    pub fn new(region: &String, rows: Vec<SheetRow>) -> Self { 
+        Self {
+
+        }
+    }*/
 }
