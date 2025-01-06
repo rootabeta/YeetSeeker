@@ -5,10 +5,12 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.95"
+chrono = "0.4.39"
 clap = { version = "4.5.23", features = ["derive"] }
 dialoguer = "0.11.0"
 flate2 = "1.0.35"
 quick-xml = { version = "0.37.2", features = ["serialize"] }
+rust_xlsxwriter = "0.80.0"
 serde = { version = "1.0.217", features = ["derive"] }
 spinoff = "0.8.0"
 ureq = "2.12.1"
