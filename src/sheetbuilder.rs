@@ -104,6 +104,7 @@ impl SheetBuilder {
         let archive = Archive::from(&"nations.xml.gz".to_string())?;
 
         // Fetch the rankings value from the other thread - waiting for it to complete if necessary
+        println!("Waiting for residency check to complete");
         let residency_rankings = rx.recv()??;
         println!("Residency fetch has completed");
 
